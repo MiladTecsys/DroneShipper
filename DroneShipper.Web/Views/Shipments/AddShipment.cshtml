@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Shipment</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <h1>Add Shipment</h1>
+
+    @using (Html.BeginForm()) 
+    {
+
+        <div class="form-horizontal">
+
+            <table>
+                
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><strong>Source</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" name="SourceAddress" /></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="SourceCity"/></td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td><input type="text" name="SourcePostalCode"/></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><strong>Destination</strong></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td><input type="text" name="DestinationAddress" /></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="DestinationCity" /></td>
+                </tr>
+                <tr>
+                    <td>Postal Code:</td>
+                    <td><input type="text" name="DestinationPostalCode" /></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>Weight:</td>
+                    <td><input type="text" name="Weight"/></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default"/>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <br/><br/>
+
+<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</body>
+
+</html>

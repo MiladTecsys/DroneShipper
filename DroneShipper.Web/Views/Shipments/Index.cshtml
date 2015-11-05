@@ -1,0 +1,32 @@
+﻿@model List<DroneShipper.BusinessFacade.ShipmentInfo>
+
+@{
+    ViewBag.Title = "Current Shipments";
+}
+
+<h2>Current Shipments</h2>
+
+<a href="shipments/AddShipment">>> Add shipment</a>
+
+<br/><br/>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Weight</th>
+        <th>Status</th>
+        <th>Assigned To</th>
+    </tr>
+    @foreach (var shipment in Model) {
+        <tr>
+            <td>@shipment.Id</td>
+            <td>@shipment.SourceAddress.Id</td>
+            <td>@shipment.DestinationAddress.Id</td>
+            <td>@shipment.Weight</td>
+            <td>@shipment.Status</td>
+            <td>@shipment.DroneId</td>
+        </tr>
+    }
+</table>

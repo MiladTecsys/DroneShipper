@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Scripts", "Database Scripts", "{FE0F8F38-ED3F-46FA-B134-0BECAFB5BA8D}"
+	ProjectSection(SolutionItems) = preProject
+		DBCreation.sql = DBCreation.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{788C76A0-F104-4272-A0FF-DD897694DF82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.DataAccess", "DroneShipper.DataAccess\DroneShipper.DataAccess.csproj", "{66845037-3B30-4B84-B2DF-9094ED647515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.BusinessFacade", "DroneShipper.BusinessFacade\DroneShipper.BusinessFacade.csproj", "{B20B2D2F-FF38-43F5-ADD2-AF7616301465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.BusinessLogic", "DroneShipper.BusinessLogic\DroneShipper.BusinessLogic.csproj", "{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Apps", "Test Apps", "{0A79B8D3-CC9B-488C-9443-9E35AED701B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.TestApp", "DroneShipper.TestApp\DroneShipper.TestApp.csproj", "{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{B9CE3F2B-03F0-463F-B5A1-2C9E55121BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.Web", "DroneShipper.Web\DroneShipper.Web.csproj", "{6292A48D-2D6A-4BAA-B905-2596E94B8C98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66845037-3B30-4B84-B2DF-9094ED647515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66845037-3B30-4B84-B2DF-9094ED647515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66845037-3B30-4B84-B2DF-9094ED647515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66845037-3B30-4B84-B2DF-9094ED647515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20B2D2F-FF38-43F5-ADD2-AF7616301465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20B2D2F-FF38-43F5-ADD2-AF7616301465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20B2D2F-FF38-43F5-ADD2-AF7616301465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20B2D2F-FF38-43F5-ADD2-AF7616301465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66845037-3B30-4B84-B2DF-9094ED647515} = {788C76A0-F104-4272-A0FF-DD897694DF82}
+		{B20B2D2F-FF38-43F5-ADD2-AF7616301465} = {788C76A0-F104-4272-A0FF-DD897694DF82}
+		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC} = {788C76A0-F104-4272-A0FF-DD897694DF82}
+		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646} = {0A79B8D3-CC9B-488C-9443-9E35AED701B7}
+		{6292A48D-2D6A-4BAA-B905-2596E94B8C98} = {B9CE3F2B-03F0-463F-B5A1-2C9E55121BAF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal
