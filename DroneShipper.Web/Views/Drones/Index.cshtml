@@ -1,0 +1,44 @@
+﻿@model List<DroneShipper.BusinessFacade.DroneInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+
+<h2>Drones</h2>
+
+<a href="drones/AddDrone">>> Add Drone</a>
+
+<br /><br />
+
+<div>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Max Weight</th>
+            <th>Status</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+        @foreach (var drone in Model) {
+            <tr>
+                <td>@drone.Id</td>
+                <td>@drone.Name</td>
+                <td>@drone.MaxWeight</td>
+                <td>@drone.Status</td>
+                <td>@drone.Latitude</td>
+                <td>@drone.Longitude</td>
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>

@@ -36,5 +36,10 @@ namespace DroneShipper.BusinessLogic
         public void UpdateDrone(DroneInfo drone) {
             dal.UpdateDrone(drone);
         }
+
+        public object GetDrones() {
+            var result = dal.GetDrones();
+            return result;
+        }
     }
 }

@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-
 using DroneShipper.BusinessFacade;
 
 using Microsoft.ApplicationBlocks.Data;
 
-namespace DroneShipper.DataAccess
-{
-    public class DroneDAL : DALBase
-    {
+namespace DroneShipper.DataAccess {
+
+    public class DroneDAL : DALBase {
+
         private const string GET_DRONE = "GetDrone";
-        private const string ADD_DRONE = "AddDrone";
+        private const string GET_DRONES = "GetDrones";
+        private const string ADD_DRONE = "InsertDrone";
         private const string UPDATE_DRONE = "UpdateDrone";
 
         public DroneInfo GetDrone(int droneId) {
@@ -29,8 +26,8 @@ namespace DroneShipper.DataAccess
             return drone;
         }
 
-        public int AddDrone(DroneInfo drone){
-          
+        public int AddDrone(DroneInfo drone) {
+
             int id = 0;
 
             using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, ADD_DRONE,
@@ -45,33 +42,44 @@ namespace DroneShipper.DataAccess
         }
 
         public void UpdateDrone(DroneInfo drone) {
-            SqlHelper.ExecuteNonQuery(_connString, UPDATE_DRONE, drone.Id, 
-     drone.Name, drone.Status, drone.Longitude, drone.Latitude, drone.MaxWeight);
+            SqlHelper.ExecuteNonQuery(_connString, UPDATE_DRONE, drone.Id,
+                drone.Name, drone.Status, drone.Longitude, drone.Latitude, drone.MaxWeight);
         }
 
+        public object GetDrones() {
+            var result = new List<DroneInfo>();
+            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_DRONES)) {
+                while (rdr.Read()) {
+                    var drone = FillFromReader(rdr);
+                    result.Add(drone);
+                }
+            }
+            return result;
+        }
 
         private DroneInfo FillFromReader(SqlDataReader rdr) {
             DroneInfo drone = new DroneInfo();
 
-            drone.Id = (int)rdr["Id"];
-            
-            if (rdr["Name"] != DBNull.Value){
-                drone.Name = (string)rdr["Name"];
+            drone.Id = (int) rdr["Id"];
+
+            if (rdr["Name"] != DBNull.Value) {
+                drone.Name = (string) rdr["Name"];
             }
 
             if (rdr["Status"] != DBNull.Value) {
-                drone.Status = (DroneStatus)rdr["Status"];
+                drone.Status = (DroneStatus) rdr["Status"];
             }
 
             if (rdr["MaxWeight"] != DBNull.Value) {
-                drone.MaxWeight = (decimal)rdr["MaxWeight"];
+                drone.MaxWeight = (decimal) rdr["MaxWeight"];
             }
 
-            drone.Longitude = (decimal)rdr["Longitude"];
-            drone.Latitude = (decimal)rdr["Latitude"];
-            
+            drone.Longitude = (decimal) rdr["Longitude"];
+            drone.Latitude = (decimal) rdr["Latitude"];
+
 
             return drone;
         }
+
     }
 }
