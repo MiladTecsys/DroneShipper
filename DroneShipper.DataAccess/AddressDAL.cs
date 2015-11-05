@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-
 using DroneShipper.BusinessFacade;
 
 using Microsoft.ApplicationBlocks.Data;
@@ -13,19 +8,17 @@ namespace DroneShipper.DataAccess
 {
     public class AddressDAL : DALBase
     {
-        public AddressDAL() {
-        }
-
         private const string GET_ADDRESS = "GetAddress";
         private const string ADD_ADDRESS = "InsertAddress";
         private const string UPDATE_ADDRESS = "UpdateAddress";
+        private const string GET_POSTALCODE = "GetPostalCode";
 
         public AddressInfo GetAddress(int addressId) {
             AddressInfo address = null;
 
             using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_ADDRESS, addressId)) {
                 if (rdr.Read()) {
-                    FillFromReader(rdr, ref address);
+                    address = FillFromReader(rdr);
                 }
             }
 
@@ -53,10 +46,18 @@ namespace DroneShipper.DataAccess
             return id;
         }
 
-        private void FillFromReader(SqlDataReader rdr, ref AddressInfo address) {
-            if (address == null) {
-                address = new AddressInfo();
+        public PostalCodeInfo GeocodePostalCode(string postalCode) {
+            PostalCodeInfo result = null;
+            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_POSTALCODE, postalCode)) {
+                if (rdr.Read()) {
+                    result = FillPostalCodeFromReader(rdr);
+                }
             }
+            return result;
+        }
+
+        private AddressInfo FillFromReader(SqlDataReader rdr) {
+            var address = new AddressInfo();
 
             address.Id = (int)rdr["Id"];
             if (rdr["AddressLine1"] != DBNull.Value) {
@@ -85,6 +86,17 @@ namespace DroneShipper.DataAccess
             }
             address.Longitude = (decimal)rdr["Longitude"];
             address.Latitude = (decimal)rdr["Latitude"];
+
+            return address;
+        }
+
+        private PostalCodeInfo FillPostalCodeFromReader(SqlDataReader rdr) {
+            var postalCode = new PostalCodeInfo {
+                Latitude = (decimal)rdr["Latitude"],
+                Longitude = (decimal)rdr["Longitude"],
+                PostalCode = (string)rdr["PostalCode"]
+            };
+            return postalCode;
         }
 
     }

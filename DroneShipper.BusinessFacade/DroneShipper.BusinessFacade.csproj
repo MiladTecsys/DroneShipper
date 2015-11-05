@@ -43,6 +43,7 @@
     <Compile Include="DroneInfo.cs" />
     <Compile Include="DroneShipmentActivityLogInfo.cs" />
     <Compile Include="DroneStatus.cs" />
+    <Compile Include="PostalCodeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShipmentInfo.cs" />
     <Compile Include="ShipmentStatus.cs" />

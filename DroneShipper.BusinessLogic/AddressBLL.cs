@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Text.RegularExpressions;
 using DroneShipper.BusinessFacade;
 using DroneShipper.DataAccess;
 
@@ -11,10 +7,10 @@ namespace DroneShipper.BusinessLogic
 {
     public class AddressBLL
     {
-        private AddressDAL ad = null;
+        private readonly AddressDAL _addressDal = null;
 
         public AddressBLL() {
-            ad = new AddressDAL();
+            _addressDal = new AddressDAL();
         }
 
         public virtual AddressInfo GetAddress(int addressId) {
@@ -22,7 +18,8 @@ namespace DroneShipper.BusinessLogic
             if (addressId <= 0)
                 throw new ArgumentOutOfRangeException("addressId", addressId, "addressId must be a positive integer");
 
-            return ad.GetAddress(addressId);
+            var address = _addressDal.GetAddress(addressId);
+            return address;
         }
 
         public int AddAddress(AddressInfo address) {
@@ -31,7 +28,24 @@ namespace DroneShipper.BusinessLogic
                 throw new ArgumentNullException("address");
             }
 
-            return ad.AddAddress(address);
+            var postalCode = GeoCodePostalCode(address.ZipCode);
+            address.Latitude = postalCode.Latitude;
+            address.Longitude = postalCode.Longitude;
+
+            var id = _addressDal.AddAddress(address);
+            return id;
         }
+
+        public PostalCodeInfo GeoCodePostalCode(string postalCode) {
+            var sanitizedPostalCode = Regex.Replace(postalCode, @"\s+", "");
+            var result = _addressDal.GeocodePostalCode(sanitizedPostalCode);
+            return result;
+        }
+
+        public void UpdateAddress(AddressInfo address) {
+            _addressDal.UpdateAddress(address);
+        }
+
     }
+
 }
