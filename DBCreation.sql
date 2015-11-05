@@ -65,7 +65,8 @@ SELECT
  [SourceAddressId],
  [DestinationAddressId],
  [Weight],
- [Status]
+ [Status],
+ [DroneId]
 FROM
 	[dbo].[Shipments]
 WHERE
@@ -82,7 +83,8 @@ AS
 		 [SourceAddressId],
 		 [DestinationAddressId],
 		 [Weight],
-		 [Status]
+		 [Status],
+		 [DroneId]
 		FROM
 			[dbo].[Shipments]
 		WHERE

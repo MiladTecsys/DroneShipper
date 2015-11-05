@@ -21,12 +21,12 @@ namespace DroneShipper.Web.Controllers {
 
         [HttpPost]
         public ActionResult AddShipment(
-              string sourceAdddress, string sourceCity, string sourcePostalCode
+              string sourceAddress, string sourceCity, string sourcePostalCode
             , string destinationAddress, string destinationCity, string destinationPostalCode
             , decimal weight) {
 
             var shipment = new ShipmentInfo {
-                SourceAddress = new AddressInfo{Address1 = sourceAdddress, City = sourceCity, ZipCode = sourcePostalCode},
+                SourceAddress = new AddressInfo{Address1 = sourceAddress, City = sourceCity, ZipCode = sourcePostalCode},
                 DestinationAddress = new AddressInfo{Address1 = destinationAddress, City = destinationCity, ZipCode = destinationPostalCode},
                 Weight = weight
             };

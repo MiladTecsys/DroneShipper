@@ -36,9 +36,9 @@ namespace DroneShipper.BusinessLogic
         }
 
         public int AddShipment(ShipmentInfo shipment) {
-            shipment.Id = shipmentDAL.AddShipment(shipment);
             shipment.SourceAddress.Id = addressDAL.AddAddress(shipment.SourceAddress);
             shipment.DestinationAddress.Id = addressDAL.AddAddress(shipment.DestinationAddress);
+            shipment.Id = shipmentDAL.AddShipment(shipment);
 
             return shipment.Id;
         }
