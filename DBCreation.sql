@@ -349,6 +349,22 @@ AS
 
 GO
 
+CREATE PROCEDURE [GetActivityLogsByShipment]
+	@ShipmentID INT
+AS
+
+SELECT
+	[ID],
+	[DroneId],
+	[ShipmentId],
+	[DateTimeUTC],
+	[MEssage]
+FROM
+	[dbo].[DroneShipmentActivityLog]
+WHERE
+	[ShipmentId] = @ShipmentID
+GO
+
 CREATE PROCEDURE InsertBase
 	@Name NVARCHAR(100),
 	@AddressId INT

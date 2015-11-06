@@ -1,4 +1,6 @@
-﻿using DroneShipper.BusinessFacade;
+﻿using System.Collections.Generic;
+
+using DroneShipper.BusinessFacade;
 using DroneShipper.DataAccess;
 
 namespace DroneShipper.BusinessLogic
@@ -15,5 +17,8 @@ namespace DroneShipper.BusinessLogic
             return _dal.AddActivity(log);
         }
 
+        public List<DroneShipmentActivityLogInfo> GetActivityByShipment(int shipmentId) {
+            return _dal.GetActivityByShipment(shipmentId);
+        }
     }
 }

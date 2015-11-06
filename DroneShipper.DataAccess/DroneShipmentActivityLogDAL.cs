@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+
+
 using DroneShipper.BusinessFacade;
+
 using Microsoft.ApplicationBlocks.Data;
 
 namespace DroneShipper.DataAccess
@@ -8,6 +12,7 @@ namespace DroneShipper.DataAccess
     public class DroneShipmentActivityLogDAL : DALBase {
 
         private const string INSERT_LOG = "[InsertDroneShipmentActivityLog]";
+        private const string GET_LOGS_BY_SHIPMENT = "[GetActivityLogsByShipment]";
 
         public int AddActivity(DroneShipmentActivityLogInfo log)
         {
@@ -23,6 +28,33 @@ namespace DroneShipper.DataAccess
             log.Id = id;
 
             return id;
+        }
+
+        public List<DroneShipmentActivityLogInfo> GetActivityByShipment(int shipmentId) {
+
+            List<DroneShipmentActivityLogInfo> retVal = new List<DroneShipmentActivityLogInfo>();
+
+            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_LOGS_BY_SHIPMENT, shipmentId)){
+                while (rdr.Read()) {
+                    DroneShipmentActivityLogInfo log = FillFromReader(rdr);
+                    retVal.Add(log);
+                }
+            }
+
+            return retVal;
+        }
+
+        private DroneShipmentActivityLogInfo FillFromReader(SqlDataReader rdr) {
+
+            DroneShipmentActivityLogInfo retVal = new DroneShipmentActivityLogInfo();
+
+            retVal.DateTimeUtc = (DateTime)rdr["DateTimeUTC"];
+            retVal.DroneId = (int)rdr["DroneId"];
+            retVal.Id = (int)rdr["Id"];
+            retVal.Message = (string)rdr["Message"];
+            retVal.ShipmentId = (int)rdr["ShipmentId"];
+
+            return retVal;
         }
 
     }
