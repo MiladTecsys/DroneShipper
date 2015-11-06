@@ -54,7 +54,7 @@ namespace DroneShipper.BusinessLogic
             DroneShipmentActivityLogInfo log = new DroneShipmentActivityLogInfo();
             log.DroneId = droneId;
             log.ShipmentId = shipmentId;
-            log.Message = "Beginning processing for shipment";
+            log.Message = "Beginning processing";
             logBLL.AddDroneShipmentActivityLog(log);
 
             // Go pick up shipment
