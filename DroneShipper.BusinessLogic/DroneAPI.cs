@@ -11,7 +11,8 @@ namespace DroneShipper.BusinessLogic
 {
     public class DroneAPI
     {
-        private const int MAX_TRAVEL_TIME_IN_SECONDS = 10;
+        private const int MIN_TRAVEL_TIME_IN_SECONDS = 10;
+        private const int MAX_TRAVEL_TIME_IN_SECONDS = 30;
 
         public int ShipmentId{
             get;
@@ -65,7 +66,7 @@ namespace DroneShipper.BusinessLogic
             log.Message = "Travelling to shipment source for pickup";
             logBLL.AddDroneShipmentActivityLog(log);
 
-            travelTime= r.Next(0, MAX_TRAVEL_TIME_IN_SECONDS);
+            travelTime= r.Next(MIN_TRAVEL_TIME_IN_SECONDS, MAX_TRAVEL_TIME_IN_SECONDS);
             log.Message = string.Format("Estimated time to reach shipment source (in seconds): {0}", travelTime);
             logBLL.AddDroneShipmentActivityLog(log);
 
@@ -79,7 +80,7 @@ namespace DroneShipper.BusinessLogic
             drone.Status = DroneStatus.DeliveringShipment;
             droneBLL.UpdateDrone(drone);
 
-            travelTime = r.Next(0, MAX_TRAVEL_TIME_IN_SECONDS);
+            travelTime = r.Next(MIN_TRAVEL_TIME_IN_SECONDS, MAX_TRAVEL_TIME_IN_SECONDS);
             log.Message = string.Format("Estimated time to reach shipment destination (in seconds): {0}", travelTime);
             logBLL.AddDroneShipmentActivityLog(log);
 

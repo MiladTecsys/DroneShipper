@@ -10,7 +10,7 @@ namespace DroneShipper.Web.Controllers {
 
         public ActionResult Index() {
             var bll = new ShipmentBLL();
-            var model = bll.GetShipments(new List<ShipmentStatus> {ShipmentStatus.AwaitingShipment, ShipmentStatus.InTransit});
+            var model = bll.GetShipments(new List<ShipmentStatus> {ShipmentStatus.AwaitingShipment, ShipmentStatus.InTransit, ShipmentStatus.Shipped});
             return View(model);
         }
 

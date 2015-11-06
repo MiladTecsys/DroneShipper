@@ -1,12 +1,16 @@
-﻿@model List<DroneShipper.BusinessFacade.ShipmentInfo>
+﻿@using DroneShipper.BusinessFacade
+@model List<DroneShipper.BusinessFacade.ShipmentInfo>
 
 @{
     ViewBag.Title = "Current Shipments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Current Shipments</h2>
+<h2>Shipments</h2>
 
+<br/>
+
+<h4>Waiting</h4>
 <div class="panel">
     <table class="table table-striped">
         <tr>
@@ -14,20 +18,60 @@
             <th>Source</th>
             <th>Destination</th>
             <th>Weight</th>
-            <th>Status</th>
-            <th>Assigned To</th>
         </tr>
-        @foreach (var shipment in Model) {
+        @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.AwaitingShipment)) {
             <tr>
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
                 <td>@shipment.Weight</td>
-                <td>@shipment.Status</td>
+            </tr>
+        }
+    </table>
+</div>
+<a class="btn btn-primary" href="~/Shipments/AddShipment">Add Shipment</a>
+
+<br /><br />
+<h4>In Transit</h4>
+<div class="panel">
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Weight</th>
+            <th>Assigned To</th>
+        </tr>
+        @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.InTransit)) {
+            <tr>
+                <td>@shipment.Id</td>
+                <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
+                <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
+                <td>@shipment.Weight</td>
                 <td>@shipment.DroneId</td>
             </tr>
         }
     </table>
 </div>
 
-<a class="btn btn-primary" href="~/Shipments/AddShipment">Add Shipment</a>
+<br/>
+<h4>Delivered</h4>
+<div class="panel">
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Weight</th>
+        </tr>
+        @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.Shipped))
+        {
+            <tr>
+                <td>@shipment.Id</td>
+                <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
+                <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
+                <td>@shipment.Weight</td>
+            </tr>
+        }
+    </table>
+</div>
