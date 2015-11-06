@@ -145,7 +145,8 @@ CREATE PROCEDURE [dbo].[UpdateShipment]
  @SourceAddressId INT,
  @DestinationAddressId INT,
  @Weight DECIMAL(18, 6),
- @Status INT
+ @Status INT,
+ @DroneId INT
 AS
 
 UPDATE [dbo].[Shipments]
