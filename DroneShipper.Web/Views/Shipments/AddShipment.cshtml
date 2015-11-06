@@ -1,92 +1,76 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Add Shipment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add Shipment</h1>
+<h2>Add Shipment</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
 
-    <div class="form-horizontal">
+    <div class="form-horizontal jumbotron">
 
-        <table>
-                
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
+        <div class="form-group">
+            <span class="col-sm-2 control-label"><h3>From</h3></span>
+        </div>
 
-            <tr>
-                <td colspan="2"><strong>Source</strong></td>
-            </tr>
+        <div class="form-group">
+            <label for="sourceAddress" class="col-sm-2 control-label">Address:</label>
+            <div class="col-sm-3">
+                <input type="text" name="sourceAddress" id="sourceAddress" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sourceCity" class="col-sm-2 control-label">City:</label>
+            <div class="col-sm-3">
+                <input type="text" name="sourceCity" id="sourceCity" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sourcePostalCode" class="col-sm-2 control-label">Postal Code:</label>
+            <div class="col-sm-3">
+                <input type="text" name="sourcePostalCode" id="sourcePostalCode" class="form-control" />
+            </div>
+        </div>
 
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
+        <div class="form-group">
+            <span class="col-sm-2 control-label"><h3>To</h3></span>
+        </div>
 
-            <tr>
-                <td>Address:</td>
-                <td><input type="text" name="SourceAddress" /></td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td><input type="text" name="SourceCity"/></td>
-            </tr>
-            <tr>
-                <td>Postal Code:</td>
-                <td><input type="text" name="SourcePostalCode"/></td>
-            </tr>
+        <div class="form-group">
+            <label for="destinationAddress" class="col-sm-2 control-label">Address:</label>
+            <div class="col-sm-3">
+                <input type="text" name="destinationAddress" id="destinationAddress" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="destinationCity" class="col-sm-2 control-label">City:</label>
+            <div class="col-sm-3">
+                <input type="text" name="destinationCity" id="destinationCity" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="destinationPostalCode" class="col-sm-2 control-label">Postal Code:</label>
+            <div class="col-sm-3">
+                <input type="text" name="destinationPostalCode" id="destinationPostalCode" class="form-control" />
+            </div>
+        </div>
+        
+        <br/>
 
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td colspan="2"><strong>Destination</strong></td>
-            </tr>
-
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>Address:</td>
-                <td><input type="text" name="DestinationAddress" /></td>
-            </tr>
-            <tr>
-                <td>City:</td>
-                <td><input type="text" name="DestinationCity" /></td>
-            </tr>
-            <tr>
-                <td>Postal Code:</td>
-                <td><input type="text" name="DestinationPostalCode" /></td>
-            </tr>
-
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td>Weight:</td>
-                <td><input type="text" name="Weight"/></td>
-            </tr>
-
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-
-        </table>
+        <div class="form-group">
+            <label for="weight" class="col-sm-2 control-label">Wight:</label>
+            <div class="col-sm-3">
+                <input type="text" name="weight" id="weight" class="form-control" />
+            </div>
+        </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
 
     </div>
 }
-
-<br/><br/>
-
-@Html.ActionLink("Back to List", "Index")
-

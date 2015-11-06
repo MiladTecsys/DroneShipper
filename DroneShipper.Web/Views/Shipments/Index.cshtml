@@ -2,31 +2,32 @@
 
 @{
     ViewBag.Title = "Current Shipments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Current Shipments</h2>
 
-<a href="shipments/AddShipment">>> Add shipment</a>
-
-<br/><br/>
-
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Id</th>
-        <th>Source</th>
-        <th>Destination</th>
-        <th>Weight</th>
-        <th>Status</th>
-        <th>Assigned To</th>
-    </tr>
-    @foreach (var shipment in Model) {
+<div class="panel">
+    <table class="table table-striped">
         <tr>
-            <td>@shipment.Id</td>
-            <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
-            <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
-            <td>@shipment.Weight</td>
-            <td>@shipment.Status</td>
-            <td>@shipment.DroneId</td>
+            <th>Id</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Weight</th>
+            <th>Status</th>
+            <th>Assigned To</th>
         </tr>
-    }
-</table>
+        @foreach (var shipment in Model) {
+            <tr>
+                <td>@shipment.Id</td>
+                <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
+                <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
+                <td>@shipment.Weight</td>
+                <td>@shipment.Status</td>
+                <td>@shipment.DroneId</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<a class="btn btn-primary" href="~/Shipments/AddShipment">Add Shipment</a>

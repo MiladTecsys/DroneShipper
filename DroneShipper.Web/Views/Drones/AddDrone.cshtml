@@ -1,53 +1,48 @@
 ﻿@model List<DroneShipper.BusinessFacade.BaseInfo>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Add Drone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h1>Add Drone</h1>
+    <h2>Add Drone</h2>
 
     @using (Html.BeginForm())
     {
 
-        <div class="form-horizontal">
+        <div class="form-horizontal jumbotron">
 
-            <table>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name:</label>
+                <div class="col-sm-3">
+                    <input type="text" name="name" id="name" class="form-control" />
+                </div>
+            </div>
 
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" name="Name" /></td>
-                </tr>
-                <tr>
-                    <td>MaxWeight:</td>
-                    <td><input type="text" name="MaxWeight"/></td>
-                </tr>
-                <tr>
-                    <td>Creat in base:</td>
-                    <td>
-                        <select name="baseId">
-                            @foreach (var baseInfo in Model) {
-                                <option value="@baseInfo.Id">@baseInfo.Name</option>
-                            }
-                        </select>
-                    </td>
-                </tr>
+            <div class="form-group">
+                <label for="maxWeight" class="col-sm-2 control-label">Max Weight:</label>
+                <div class="col-sm-3">
+                    <input type="text" name="maxWeight" id="maxWeight" class="form-control" />
+                </div>
+            </div>
 
-            </table>
-
-            <br/>
+            <div class="form-group">
+                <label for="baseId" class="col-sm-2 control-label">Create in base:</label>
+                <div class="col-sm-3">
+                    <select name="baseId" id="baseId" class="form-control">
+                        @foreach (var baseInfo in Model) {
+                            <option value="@baseInfo.Id">@baseInfo.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </div>
 
         </div>
     }
-
-    <br /><br />
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 

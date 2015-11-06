@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="~/Home">Home</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="~/Shipments">Shipments</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="~/Drones">Drones</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="~/Bases">Bases</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="~/Activity">Activity</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    @RenderBody()
+</div>
+
+</body>
+</html>
