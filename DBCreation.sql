@@ -2,6 +2,9 @@
 GO
 
 -- Recreate Stuff
+DROP DATABASE [DroneShipper]
+GO
+
 CREATE DATABASE [DroneShipper]
 GO
 
@@ -262,20 +265,6 @@ FROM
 WHERE
 	Id = @ID
 
-GO
-
-CREATE PROCEDURE [dbo].[GetDrones]
-AS
-
-SELECT
-	[Id],
-	[Name],
-	[Status],
-	[Longitude],
-	[Latitude],
-	[MaxWeight]
-FROM
-	dbo.Drones
 GO
 
 CREATE PROCEDURE [dbo].[GetDrones]
