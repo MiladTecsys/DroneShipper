@@ -24,6 +24,9 @@ namespace DroneShipper.BusinessLogic {
         }
 
         public int Add(BaseInfo baseInfo) {
+            var postalCode = _addressDal.GeocodePostalCode(baseInfo.Address.ZipCode);
+            baseInfo.Address.Latitude = postalCode.Latitude;
+            baseInfo.Address.Longitude = postalCode.Longitude;
             _addressDal.AddAddress(baseInfo.Address);
             var id = _baseDal.Add(baseInfo);
             return id;

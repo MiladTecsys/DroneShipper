@@ -45,6 +45,8 @@ namespace DroneShipper.BusinessLogic
             ShipmentBLL shipBLL = new ShipmentBLL();
             DroneBLL droneBLL = new DroneBLL();
             DroneShipmentActivityLogBLL logBLL = new DroneShipmentActivityLogBLL();
+            BaseBLL baseBll = new BaseBLL();
+            AddressBLL addressBll = new AddressBLL();
 
             // Start
             ShipmentInfo shipment = shipBLL.GetShipment(shipmentId);
@@ -95,10 +97,33 @@ namespace DroneShipper.BusinessLogic
             logBLL.AddDroneShipmentActivityLog(log);
 
             // Returning home
+            log.Message = "Returning to base";
+            logBLL.AddDroneShipmentActivityLog(log);
             drone.Status = DroneStatus.ReturningToBase;
             droneBLL.UpdateDrone(drone);
 
             // Find the nearest base and go there
+            log.Message = "Locating the nearest base";
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            var bases = baseBll.GetAll();
+            BaseInfo nearestBase = null;
+            double shortestDistance = double.MaxValue;
+            foreach (var baseInfo in bases) {
+                var distance = addressBll.GetDistanceKm((double)drone.Latitude, (double)drone.Longitude, (double)baseInfo.Address.Latitude, (double)baseInfo.Address.Longitude);
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    nearestBase = baseInfo;
+                }
+            }
+
+            log.Message = string.Format("Nearest base is: {0}", nearestBase.Name);
+            logBLL.AddDroneShipmentActivityLog(log);
+            travelTime = r.Next(MIN_TRAVEL_TIME_IN_SECONDS, MAX_TRAVEL_TIME_IN_SECONDS);
+            log.Message = string.Format("Estimated time to reach base (in seconds): {0}", travelTime);
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            TravelTo(droneBLL, drone, nearestBase.Address.Longitude, nearestBase.Address.Latitude, travelTime);
 
             // End 
             log.Message = "Now available";

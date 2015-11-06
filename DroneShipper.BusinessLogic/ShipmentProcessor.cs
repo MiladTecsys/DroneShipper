@@ -63,6 +63,8 @@ namespace DroneShipper.BusinessLogic {
 
         private void AssignShipmentToDrone(ShipmentInfo shipment, DroneInfo drone) {
             _logger.Log("Assignig shipment #{0} to drone {1}", shipment.Id, drone.Name);
+            shipment.DroneId = drone.Id;
+            _shipmentBll.UpdateShipment(shipment);
             _shipmentBll.AssignDroneToShipment(drone.Id, shipment.Id);
         }
 

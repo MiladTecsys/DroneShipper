@@ -150,7 +150,8 @@ SET
  [SourceAddressId] = @SourceAddressId,
  [DestinationAddressId] = @DestinationAddressId ,
  [Weight] = @Weight,
- [Status] = @Status
+ [Status] = @Status,
+ [DroneId] = @DroneId
 WHERE
 	[Id] = @ID
 
@@ -398,11 +399,11 @@ GO
 
 SET IDENTITY_INSERT [dbo].[Addresses] ON 
 GO
-INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (1, N'', NULL, NULL, N'', NULL, NULL, N'L4B 3Z4', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (1, N'', NULL, NULL, N'', NULL, NULL, N'L4B3Z4', CAST(43.842036 AS Decimal(18, 6)), CAST(-79.394177 AS Decimal(18, 6)))
 GO
-INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (2, N'', NULL, NULL, N'', NULL, NULL, N'L4C 6E6', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (2, N'', NULL, NULL, N'', NULL, NULL, N'L4C6E6', CAST(43.849904 AS Decimal(18, 6)), CAST(-79.448408 AS Decimal(18, 6)))
 GO
-INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (3, N'', NULL, NULL, N'', NULL, NULL, N'L4E 0K4', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (3, N'', NULL, NULL, N'', NULL, NULL, N'L4E0K4', CAST(43.903880 AS Decimal(18, 6)), CAST(-79.445226 AS Decimal(18, 6)))
 GO
 SET IDENTITY_INSERT [dbo].[Addresses] OFF
 GO
