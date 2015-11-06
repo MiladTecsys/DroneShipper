@@ -16,8 +16,8 @@ CREATE TABLE [Drones]  (
  [Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
  [Name] NVARCHAR(MAX) NOT NULL,
  [Status] INT NOT NULL,
- [Longitude] DECIMAL,
- [Latitude] DECIMAL,
+ [Longitude] DECIMAL(18, 8),
+ [Latitude] DECIMAL(18, 8),
  [MaxWeight] DECIMAL
 )
 GO
@@ -41,8 +41,8 @@ CREATE TABLE [Addresses] (
   [ProvinceState] NVARCHAR(MAX),
   [Country] NVARCHAR(MAX),
   [PostalZipCode] NVARCHAR(MAX),
-  [Longitude] DECIMAL NOT NULL,
-  [Latitude] DECIMAL NOT NULL
+  [Longitude] DECIMAL(18, 8) NOT NULL,
+  [Latitude] DECIMAL(18, 8) NOT NULL
 )
 GO
 
@@ -169,8 +169,8 @@ CREATE PROCEDURE [dbo].[InsertAddress]
   @ProvinceState NVARCHAR(MAX),
   @Country NVARCHAR(MAX),
   @PostalZipCode NVARCHAR(MAX),
-  @Longitude DECIMAL,
-  @Latitude DECIMAL
+  @Longitude DECIMAL(18, 8),
+  @Latitude DECIMAL(18, 8)
 AS 
 
 INSERT INTO [dbo].[Addresses] (
@@ -209,8 +209,8 @@ CREATE PROCEDURE [dbo].[UpdateAddress]
   @ProvinceState NVARCHAR(MAX),
   @Country NVARCHAR(MAX),
   @PostalZipCode NVARCHAR(MAX),
-  @Longitude DECIMAL,
-  @Latitude DECIMAL
+  @Longitude DECIMAL(18, 8),
+  @Latitude DECIMAL(18, 8)
 AS
 
 UPDATE [dbo].[Addresses]
@@ -247,11 +247,25 @@ WHERE
 
 GO
 
+CREATE PROCEDURE [dbo].[GetDrones]
+AS
+
+SELECT
+	[Id],
+	[Name],
+	[Status],
+	[Longitude],
+	[Latitude],
+	[MaxWeight]
+FROM
+	dbo.Drones
+GO
+
 CREATE PROCEDURE [dbo].[InsertDrone]
 	@Name NVARCHAR(MAX),
 	@Status INT,
-	@Longitude DECIMAL,
-	@Latitude DECIMAL,
+	@Longitude DECIMAL(18, 8),
+	@Latitude DECIMAL(18, 8),
 	@MaxWeight DECIMAL
 AS
 	
@@ -279,8 +293,8 @@ CREATE PROCEDURE [dbo].[UpdateDrone]
 	@ID INT,
 	@Name NVARCHAR(MAX),
 	@Status INT,
-	@Longitude DECIMAL,
-	@Latitude DECIMAL,
+	@Longitude DECIMAL(18, 8),
+	@Latitude DECIMAL(18, 8),
 	@MaxWeight DECIMAL
 AS
 

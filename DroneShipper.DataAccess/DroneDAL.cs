@@ -14,6 +14,7 @@ namespace DroneShipper.DataAccess
     public class DroneDAL : DALBase
     {
         private const string GET_DRONE = "GetDrone";
+        private const string GET_DRONES = "GetDrones";
         private const string ADD_DRONE = "AddDrone";
         private const string UPDATE_DRONE = "UpdateDrone";
 
@@ -27,6 +28,20 @@ namespace DroneShipper.DataAccess
             }
 
             return drone;
+        }
+
+        public List<DroneInfo> GetDrones() {
+
+            List<DroneInfo> retVal = new List<DroneInfo>();
+
+            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_DRONES)) {
+                while (rdr.Read()) {
+                    DroneInfo drone = FillFromReader(rdr);
+                    retVal.Add(drone);
+                }
+            }
+
+            return retVal;
         }
 
         public int AddDrone(DroneInfo drone){

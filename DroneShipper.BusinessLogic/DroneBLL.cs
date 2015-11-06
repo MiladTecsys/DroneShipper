@@ -24,6 +24,10 @@ namespace DroneShipper.BusinessLogic
             return dal.GetDrone(droneId);
         }
 
+        public List<DroneInfo> GetDrones() {
+            return dal.GetDrones();
+        }
+
         public int AddDrone(DroneInfo drone) {
             // Validate input
             if (drone == null) {
