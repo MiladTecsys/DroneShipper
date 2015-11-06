@@ -51,6 +51,27 @@ CREATE TABLE [DroneShipmentActivityLog] (
 )
 GO
 
+CREATE TABLE [dbo].[Bases] (
+  [Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  [Name] NVARCHAR(100) NOT NULL,
+  [AddressId] INT NOT NULL
+)
+
+CREATE TABLE [dbo].[PostalCodes](
+	[PostalCode] [varchar](6) NOT NULL PRIMARY KEY,
+	[Latitude] [decimal](18, 6) NULL,
+	[Longitude] [decimal](18, 6) NULL,
+	[City] [varchar](100) NULL,
+	[Province] [varchar](2) NULL
+) ON [PRIMARY]
+GO
+
+CREATE NONCLUSTERED INDEX IX_PostalCodes_Lat_Long ON dbo.PostalCodes (Latitude, Longitude) ON [PRIMARY]
+GO
+
+
+
+
 
 CREATE PROCEDURE [dbo].[GetShipment] 
 	@ID INT
@@ -328,17 +349,26 @@ AS
 
 GO
 
-
-CREATE TABLE [dbo].[PostalCodes](
-	[PostalCode] [varchar](6) NOT NULL PRIMARY KEY,
-	[Latitude] [decimal](18, 6) NULL,
-	[Longitude] [decimal](18, 6) NULL,
-	[City] [varchar](100) NULL,
-	[Province] [varchar](2) NULL
-) ON [PRIMARY]
+CREATE PROCEDURE InsertBase
+	@Name NVARCHAR(100),
+	@AddressId INT
+AS
+	INSERT INTO Bases (Name, AddressId)
+	VALUES (@Name, @AddressId)
 GO
 
-CREATE NONCLUSTERED INDEX IX_PostalCodes_Lat_Long ON dbo.PostalCodes (Latitude, Longitude) ON [PRIMARY]
+CREATE PROCEDURE GetBase 
+	@Id INT
+AS
+	SELECT Id, Name, AddressId
+	FROM Bases
+	WHERE Id = @Id
+GO
+
+CREATE PROCEDURE GetBases
+AS
+	SELECT Id, Name, AddressId
+	FROM Bases
 GO
 
 CREATE PROCEDURE GetPostalCode

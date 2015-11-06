@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressDAL.cs" />
+    <Compile Include="BaseDAL.cs" />
     <Compile Include="DALBase.cs" />
     <Compile Include="DroneDAL.cs" />
     <Compile Include="DroneShipmentActivityLogDAL.cs" />

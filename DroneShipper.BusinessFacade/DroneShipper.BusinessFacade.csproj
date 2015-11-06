@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressInfo.cs" />
+    <Compile Include="BaseInfo.cs" />
     <Compile Include="DroneInfo.cs" />
     <Compile Include="DroneShipmentActivityLogInfo.cs" />
     <Compile Include="DroneStatus.cs" />
