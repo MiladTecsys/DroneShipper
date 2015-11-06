@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+
 using DroneShipper.BusinessFacade;
 using DroneShipper.DataAccess;
 
@@ -44,8 +46,12 @@ namespace DroneShipper.BusinessLogic
 
         public void AssignDroneToShipment(int droneId, int shipmentId) {
 
+            DroneAPI droneAPI = new DroneAPI();
+            droneAPI.DroneId = droneId;
+            droneAPI.ShipmentId = shipmentId;
 
-
+            Thread t = new Thread(new ThreadStart(droneAPI.ProcessShipment));
+            t.Start();
         }
     }
 }
