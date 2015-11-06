@@ -1,14 +1,19 @@
-﻿using DroneShipper.BusinessLogic;
+﻿using System.Threading;
+using DroneShipper.BusinessLogic;
 
 namespace DroneShipper.Processor.Console {
     internal class Program {
+
         private static void Main(string[] args) {
             var logger = new ConsoleLogger();
             logger.Log("Shipment processor console app start");
             var shipmentProcessor = new ShipmentProcessor(logger);
-            shipmentProcessor.Run();
-            logger.Log("Shipment processor console app end. Press any key to exit...");
-            System.Console.ReadKey();
+            while (true) {
+                logger.Log("");
+                shipmentProcessor.Run();
+                Thread.Sleep(5000);
+                logger.Log("");
+            }
         }
     }
 }
