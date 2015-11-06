@@ -29,9 +29,11 @@ namespace DroneShipper.BusinessLogic {
                 throw new ArgumentNullException("address");
             }
 
-            var postalCode = GeoCodePostalCode(address.ZipCode);
-            address.Latitude = postalCode.Latitude;
-            address.Longitude = postalCode.Longitude;
+            if (address.Latitude == 0 && address.Longitude == 0) {
+                var postalCode = GeoCodePostalCode(address.ZipCode);
+                address.Latitude = postalCode.Latitude;
+                address.Longitude = postalCode.Longitude;
+            }
 
             var id = _addressDal.AddAddress(address);
             return id;

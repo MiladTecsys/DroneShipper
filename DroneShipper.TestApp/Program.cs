@@ -20,13 +20,13 @@ namespace DroneShipper.TestApp
 
             ShipmentInfo shipment = new ShipmentInfo();
             shipment.DestinationAddress = new AddressInfo();
-            shipment.DestinationAddress.Address1 = "70 East Beaver Creek Road";
-            shipment.DestinationAddress.City = "Richmond Hill";
+            shipment.DestinationAddress.Address1 = "335 Laird Road";
+            shipment.DestinationAddress.City = "Guelph";
             shipment.DestinationAddress.Country = "Canada";
             shipment.DestinationAddress.State = "Ontario";
-            shipment.DestinationAddress.ZipCode = "L4B 3B2";
-            shipment.DestinationAddress.Latitude = 43.85657M;
-            shipment.DestinationAddress.Longitude = -79.37895M;
+            shipment.DestinationAddress.ZipCode = "N1H 6J3";
+            shipment.DestinationAddress.Latitude = 43.50501M;
+            shipment.DestinationAddress.Longitude = -80.26827M;
             shipment.Weight = 1M;
             shipment.Status = ShipmentStatus.AwaitingShipment;
             shipment.SourceAddress = new AddressInfo();
