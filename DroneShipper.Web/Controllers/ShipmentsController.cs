@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using DroneShipper.BusinessFacade;
 using DroneShipper.BusinessLogic;
@@ -16,8 +17,17 @@ namespace DroneShipper.Web.Controllers {
 
         [HttpGet]
         public ActionResult AddShipment() {
+
+            if (!string.IsNullOrEmpty(Request.QueryString["shipmentId"])) {
+                int shipmentId = Convert.ToInt32(Request.QueryString["shipmentId"]);
+
+                var logBll = new DroneShipmentActivityLogBLL();
+                ViewBag.Logs = logBll.GetActivityByShipment(shipmentId);
+            }
+
             return View();
         }
+
 
         [HttpPost]
         public ActionResult AddShipment(
