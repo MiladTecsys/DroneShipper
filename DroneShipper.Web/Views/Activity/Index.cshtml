@@ -1,61 +1,55 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Welcome To The Drone Delivery System";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Activity</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Activity</title>
-    <style>
-        #map {
-            width: 500px;
-            height: 400px;
+<style>
+    #map {
+        width: 500px;
+        height: 400px;
+    }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel-compiled.js"></script>
+
+<script>
+
+    var drones = [@Html.Raw(ViewBag.DroneArray)];
+
+    function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: new google.maps.LatLng(43.85657, -79.37895),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel-compiled.js"></script>
-    <script>
+        var map = new google.maps.Map(mapCanvas, mapOptions);
 
-        var drones = [@Html.Raw(ViewBag.DroneArray)];
+        for (i = 0; i < drones.length; i++) {
+            var drone = drones[i];
 
-        function initialize() {
-            var mapCanvas = document.getElementById('map');
-            var mapOptions = {
-                center: new google.maps.LatLng(43.85657, -79.37895),
-                zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(drone.latitude, drone.longitude),
+                map: map,
+                title: drone.name
+            });
 
-            for (i = 0; i < drones.length; i++) {
-                var drone = drones[i];
+            var mapLabel = new MapLabel({
+                text: drone.name,
+                position: new google.maps.LatLng(drone.latitude, drone.longitude),
+                map: map,
+                fontSize: 15,
+                align: 'right'
+            });
 
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(drone.latitude, drone.longitude),
-                    map: map,
-                    title: drone.name
-                });
-
-                var mapLabel = new MapLabel({
-                    text: drone.name,
-                    position: new google.maps.LatLng(drone.latitude, drone.longitude),
-                    map: map,
-                    fontSize: 15,
-                    align: 'right'
-                });
-
-            }
         }
+    }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize);
 
 
+</script>
 
-    </script>
-</head>
-<body>
-    <div id="map"></div>
-</body>
-</html>
+<div id="map"></div>

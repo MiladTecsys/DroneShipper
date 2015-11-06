@@ -1,10 +1,6 @@
 ﻿USE [master]
 GO
 
--- Recreate Stuff
-DROP DATABASE [DroneShipper]
-GO
-
 CREATE DATABASE [DroneShipper]
 GO
 
