@@ -2,6 +2,9 @@
 GO
 
 -- Recreate Stuff
+DROP DATABASE [DroneShipper]
+GO
+
 CREATE DATABASE [DroneShipper]
 GO
 
@@ -179,7 +182,7 @@ RETURN
 GO
 
 CREATE PROCEDURE [dbo].[InsertAddress]
-  @AddressLine1 NVARCHAR(MAX),
+	@AddressLine1 NVARCHAR(MAX),
   @AddressLine2 NVARCHAR(MAX),
   @AddressLine3 NVARCHAR(MAX),
   @City NVARCHAR(MAX),

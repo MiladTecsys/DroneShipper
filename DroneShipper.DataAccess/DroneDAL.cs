@@ -26,8 +26,22 @@ namespace DroneShipper.DataAccess {
             return drone;
         }
 
-        public int AddDrone(DroneInfo drone) {
+        public List<DroneInfo> GetDrones() {
 
+            List<DroneInfo> retVal = new List<DroneInfo>();
+
+            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_DRONES)) {
+                while (rdr.Read()) {
+                    DroneInfo drone = FillFromReader(rdr);
+                    retVal.Add(drone);
+                }
+            }
+
+            return retVal;
+        }
+
+        public int AddDrone(DroneInfo drone){
+          
             int id = 0;
 
             using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, ADD_DRONE,
@@ -42,26 +56,15 @@ namespace DroneShipper.DataAccess {
         }
 
         public void UpdateDrone(DroneInfo drone) {
-            SqlHelper.ExecuteNonQuery(_connString, UPDATE_DRONE, drone.Id,
-                drone.Name, drone.Status, drone.Longitude, drone.Latitude, drone.MaxWeight);
-        }
-
-        public List<DroneInfo> GetDrones() {
-            var result = new List<DroneInfo>();
-            using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_DRONES)) {
-                while (rdr.Read()) {
-                    var drone = FillFromReader(rdr);
-                    result.Add(drone);
-                }
-            }
-            return result;
+            SqlHelper.ExecuteNonQuery(_connString, UPDATE_DRONE, drone.Id, 
+     drone.Name, drone.Status, drone.Longitude, drone.Latitude, drone.MaxWeight);
         }
 
         private DroneInfo FillFromReader(SqlDataReader rdr) {
             DroneInfo drone = new DroneInfo();
 
             drone.Id = (int) rdr["Id"];
-
+            
             if (rdr["Name"] != DBNull.Value) {
                 drone.Name = (string) rdr["Name"];
             }
@@ -76,7 +79,7 @@ namespace DroneShipper.DataAccess {
 
             drone.Longitude = (decimal) rdr["Longitude"];
             drone.Latitude = (decimal) rdr["Latitude"];
-
+            
 
             return drone;
         }

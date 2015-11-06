@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Activity</title>
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+
+        var drones = [@Html.Raw(ViewBag.DroneArray)];
+
+        function initialize() {
+            var mapCanvas = document.getElementById('map');
+            var mapOptions = {
+                center: new google.maps.LatLng(0, 0),
+                zoom: 1,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            for (i = 0; i < drones.length; i++) {
+                var drone = drones[i];
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(drone.latitude, drone.longitude),
+                    map: map,
+                    title: drone.name
+                });
+            }
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>

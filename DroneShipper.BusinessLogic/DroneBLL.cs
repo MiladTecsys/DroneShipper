@@ -24,6 +24,10 @@ namespace DroneShipper.BusinessLogic
             return dal.GetDrone(droneId);
         }
 
+        public List<DroneInfo> GetDrones() {
+            return dal.GetDrones();
+        }
+
         public int AddDrone(DroneInfo drone) {
             // Validate input
             if (drone == null) {
@@ -37,9 +41,5 @@ namespace DroneShipper.BusinessLogic
             dal.UpdateDrone(drone);
         }
 
-        public List<DroneInfo> GetDrones() {
-            var result = dal.GetDrones();
-            return result;
-        }
     }
 }

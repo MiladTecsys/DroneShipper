@@ -96,6 +96,7 @@
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\DronesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -113,6 +114,7 @@
     <Content Include="Views\Drones\AddDrone.cshtml" />
     <Content Include="Views\Bases\Index.cshtml" />
     <Content Include="Views\Bases\AddBase.cshtml" />
+    <Content Include="Views\Activity\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
