@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AddressBLL.cs" />
     <Compile Include="BaseBLL.cs" />
+    <Compile Include="DroneAPI.cs" />
     <Compile Include="DroneBLL.cs" />
     <Compile Include="DroneShipmentActivityLogBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
