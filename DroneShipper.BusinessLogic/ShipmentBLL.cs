@@ -41,5 +41,11 @@ namespace DroneShipper.BusinessLogic
         public List<ShipmentInfo> GetShipments(List<ShipmentStatus> statuses) {
             return _shipmentDal.GetShipments(statuses);
         }
+
+        public void AssignDroneToShipment(int droneId, int shipmentId) {
+
+
+
+        }
     }
 }
