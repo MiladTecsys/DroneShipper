@@ -43,7 +43,7 @@
             <th>Assigned To</th>
         </tr>
         @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.InTransit)) {
-            <tr onclick="location.href = '@(Url.Action("AddShipment", "Shipments", new {shipmentId = shipment.Id}))'">
+            <tr style="cursor: pointer;" onclick="location.href = '@(Url.Action("ShipmentLog", "Shipments", new { shipmentId = shipment.Id }))'">
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
@@ -66,7 +66,7 @@
         </tr>
         @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.Shipped))
         {
-            <tr onclick="location.href = '@(Url.Action("AddShipment", "Shipments", new {shipmentId = shipment.Id}))'">
+            <tr style="cursor: pointer;" onclick="location.href = '@(Url.Action("ShipmentLog", "Shipments", new { shipmentId = shipment.Id }))'">
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>

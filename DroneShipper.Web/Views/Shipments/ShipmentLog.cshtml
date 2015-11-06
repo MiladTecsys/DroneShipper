@@ -1,0 +1,25 @@
+﻿@model List<DroneShipper.BusinessFacade.DroneShipmentActivityLogInfo>
+
+@{
+    ViewBag.Title = "Add Shipment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shipment #@Model[0].ShipmentId Logs</h2>
+<h4>Handled by Drone #@Model[0].DroneId</h4>
+<div class="panel">
+    <table class="table table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Message</th>
+        </tr>
+        @foreach (var log in Model) {
+            <tr>
+                <td>@log.DateTimeUtc.ToLocalTime()</td>
+                <td>@log.Message</td>
+            </tr>
+        }
+    </table>
+
+</div>
+

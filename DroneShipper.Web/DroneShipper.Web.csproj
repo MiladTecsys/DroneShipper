@@ -129,6 +129,7 @@
     <Content Include="Views\Bases\AddBase.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shipments\ShipmentLog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
