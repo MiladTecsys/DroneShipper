@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using DroneShipper.BusinessFacade;
@@ -10,6 +11,8 @@ namespace DroneShipper.BusinessLogic
 {
     public class DroneAPI
     {
+        private const int MAX_TRAVEL_TIME_IN_SECONDS = 10;
+
         public int ShipmentId{
             get;
             set;
@@ -32,10 +35,15 @@ namespace DroneShipper.BusinessLogic
 
             ProcessShipment(ShipmentId, DroneId);
         }
+
         private void ProcessShipment(int shipmentId, int droneId) {
+
+            Random r = new Random();
+            int travelTime;
 
             ShipmentBLL shipBLL = new ShipmentBLL();
             DroneBLL droneBLL = new DroneBLL();
+            DroneShipmentActivityLogBLL logBLL = new DroneShipmentActivityLogBLL();
 
             // Start
             ShipmentInfo shipment = shipBLL.GetShipment(shipmentId);
@@ -43,23 +51,83 @@ namespace DroneShipper.BusinessLogic
             shipment.DroneId = droneId;
             shipBLL.UpdateShipment(shipment);
 
+            DroneShipmentActivityLogInfo log = new DroneShipmentActivityLogInfo();
+            log.DroneId = droneId;
+            log.ShipmentId = shipmentId;
+            log.Message = "Beginning processing for shipment";
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            // Go pick up shipment
             DroneInfo drone = droneBLL.GetDrone(droneId);
             drone.Status = DroneStatus.PickingUpShipment;
             droneBLL.UpdateDrone(drone);
 
-            // Go pick up shipment
+            log.Message = "Travelling to shipment source for pickup";
+            logBLL.AddDroneShipmentActivityLog(log);
 
+            travelTime= r.Next(0, MAX_TRAVEL_TIME_IN_SECONDS);
+            log.Message = string.Format("Estimated time to reach shipment source (in seconds): {0}", travelTime);
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            TravelTo(droneBLL, drone, shipment.SourceAddress.Longitude, shipment.SourceAddress.Latitude, travelTime);
 
             // Deliver shipment
 
+            log.Message = "Delivering shipment to destination";
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            drone.Status = DroneStatus.DeliveringShipment;
+            droneBLL.UpdateDrone(drone);
+
+            travelTime = r.Next(0, MAX_TRAVEL_TIME_IN_SECONDS);
+            log.Message = string.Format("Estimated time to reach shipment destination (in seconds): {0}", travelTime);
+            logBLL.AddDroneShipmentActivityLog(log);
+
+
+            TravelTo(droneBLL, drone, shipment.DestinationAddress.Longitude, shipment.DestinationAddress.Latitude, travelTime);
 
             // Shipment delivered
             shipment.Status = ShipmentStatus.Shipped;
             shipBLL.UpdateShipment(shipment);
 
+            log.Message = "Shipment delivered";
+            logBLL.AddDroneShipmentActivityLog(log);
+
             // Returning home
+            drone.Status = DroneStatus.ReturningToBase;
+            droneBLL.UpdateDrone(drone);
+
+            // Find the nearest base and go there
 
             // End 
+            log.Message = "Now available";
+            logBLL.AddDroneShipmentActivityLog(log);
+
+            drone.Status = DroneStatus.Available;
+            droneBLL.UpdateDrone(drone);
+        }
+
+        private void TravelTo(DroneBLL droneBLL, DroneInfo drone, decimal destinationLongitude, decimal destinationLatitude, int maxTravelTime) {
+
+            int currentTravelTime = 0;
+
+            decimal totalLatitudeDistanceToTravel = drone.Latitude > destinationLatitude ? -(drone.Latitude - destinationLatitude) : destinationLatitude - drone.Latitude;
+            decimal totalLongitudeDistanceToTravel = drone.Longitude > destinationLongitude ? -(drone.Longitude - destinationLongitude) : destinationLongitude - drone.Longitude;
+
+            decimal latitudeIncrement = totalLatitudeDistanceToTravel / Convert.ToDecimal(maxTravelTime);
+            decimal longitudeIncrement = totalLongitudeDistanceToTravel / Convert.ToDecimal(maxTravelTime);
+
+            // will update every second
+            while (currentTravelTime < maxTravelTime) {
+
+                drone.Latitude += latitudeIncrement;
+                drone.Longitude += longitudeIncrement;
+
+                droneBLL.UpdateDrone(drone);
+
+                currentTravelTime += 1;
+                Thread.Sleep(1000);
+            }
 
         }
     }
