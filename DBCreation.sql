@@ -395,6 +395,44 @@ AS
 	WHERE [PostalCode] = @PostalCode
 GO
 
+
+SET IDENTITY_INSERT [dbo].[Addresses] ON 
+GO
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (1, N'', NULL, NULL, N'', NULL, NULL, N'L4B 3Z4', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+GO
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (2, N'', NULL, NULL, N'', NULL, NULL, N'L4C 6E6', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+GO
+INSERT [dbo].[Addresses] ([Id], [AddressLine1], [AddressLine2], [AddressLine3], [City], [ProvinceState], [Country], [PostalZipCode], [Latitude], [Longitude]) VALUES (3, N'', NULL, NULL, N'', NULL, NULL, N'L4E 0K4', CAST(0.000000 AS Decimal(18, 6)), CAST(0.000000 AS Decimal(18, 6)))
+GO
+SET IDENTITY_INSERT [dbo].[Addresses] OFF
+GO
+
+
+SET IDENTITY_INSERT [dbo].[Bases] ON 
+GO
+INSERT [dbo].[Bases] ([Id], [Name], [AddressId]) VALUES (1, N'South', 1)
+GO
+INSERT [dbo].[Bases] ([Id], [Name], [AddressId]) VALUES (2, N'Center', 2)
+GO
+INSERT [dbo].[Bases] ([Id], [Name], [AddressId]) VALUES (3, N'North', 3)
+GO
+SET IDENTITY_INSERT [dbo].[Bases] OFF
+GO
+
+
+SET IDENTITY_INSERT [dbo].[Drones] ON 
+GO
+INSERT [dbo].[Drones] ([Id], [Name], [Status], [Latitude], [Longitude], [MaxWeight]) VALUES (1, N'X Wing', 1, CAST(43.903880 AS Decimal(18, 6)), CAST(-79.445226 AS Decimal(18, 6)), CAST(5.000000 AS Decimal(18, 6)))
+GO
+INSERT [dbo].[Drones] ([Id], [Name], [Status], [Latitude], [Longitude], [MaxWeight]) VALUES (2, N'Terminator', 1, CAST(43.842036 AS Decimal(18, 6)), CAST(-79.394177 AS Decimal(18, 6)), CAST(10.000000 AS Decimal(18, 6)))
+GO
+INSERT [dbo].[Drones] ([Id], [Name], [Status], [Latitude], [Longitude], [MaxWeight]) VALUES (3, N'Enterprise', 1, CAST(43.875902 AS Decimal(18, 6)), CAST(-79.409193 AS Decimal(18, 6)), CAST(20.000000 AS Decimal(18, 6)))
+GO
+SET IDENTITY_INSERT [dbo].[Drones] OFF
+GO
+
+
+
 INSERT [dbo].[PostalCodes] ([PostalCode], [Latitude], [Longitude], [City], [Province]) VALUES (N'K4C4Z3', CAST(43.872118 AS Decimal(18, 6)), CAST(-79.450231 AS Decimal(18, 6)), N'RICHMOND HILL', N'ON')
 GO
 INSERT [dbo].[PostalCodes] ([PostalCode], [Latitude], [Longitude], [City], [Province]) VALUES (N'L0C0V1', CAST(43.886069 AS Decimal(18, 6)), CAST(-79.445718 AS Decimal(18, 6)), N'Richmond Hill', N'ON')
