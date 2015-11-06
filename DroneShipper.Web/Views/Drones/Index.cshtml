@@ -1,32 +1,33 @@
 ﻿@model List<DroneShipper.BusinessFacade.DroneInfo>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Drones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Drones</h2>
 
-<a href="drones/AddDrone">>> Add Drone</a>
-
-<br /><br />
-
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Max Weight</th>
-        <th>Status</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-    </tr>
-    @foreach (var drone in Model) {
+<div class="panel">
+    <table class="table table-striped">
         <tr>
-            <td>@drone.Id</td>
-            <td>@drone.Name</td>
-            <td>@drone.MaxWeight</td>
-            <td>@drone.Status</td>
-            <td>@drone.Latitude</td>
-            <td>@drone.Longitude</td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Max Weight</th>
+            <th>Status</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
         </tr>
-    }
-</table>
+        @foreach (var drone in Model) {
+            <tr>
+                <td>@drone.Id</td>
+                <td>@drone.Name</td>
+                <td>@drone.MaxWeight</td>
+                <td>@drone.Status</td>
+                <td>@drone.Latitude</td>
+                <td>@drone.Longitude</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<a class="btn btn-primary" href="~/Drones/AddDrone">Add Drone</a>

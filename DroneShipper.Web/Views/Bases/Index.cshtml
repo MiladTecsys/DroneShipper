@@ -2,26 +2,26 @@
 
 @{
     ViewBag.Title = "Bases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Bases</h2>
 
-<a href="bases/AddBase">>> Add Base</a>
-
-<br /><br />
-
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Address</th>
-    </tr>
-    @foreach (var baseInfo in Model)
-    {
+<div class="panel">
+    <table class="table table-striped">
         <tr>
-            <td>@baseInfo.Id</td>
-            <td>@baseInfo.Name</td>
-            <td>@baseInfo.Address.Address1, @baseInfo.Address.City, @baseInfo.Address.ZipCode</td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
         </tr>
-    }
-</table>
+        @foreach (var baseInfo in Model) {
+            <tr>
+                <td>@baseInfo.Id</td>
+                <td>@baseInfo.Name</td>
+                <td>@baseInfo.Address.Address1, @baseInfo.Address.City, @baseInfo.Address.ZipCode</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<a class="btn btn-primary" href="~/Bases/AddBase">Add Base</a>
