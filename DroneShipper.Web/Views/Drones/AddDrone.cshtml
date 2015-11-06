@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<DroneShipper.BusinessFacade.BaseInfo>
+
+@{
     Layout = null;
 }
 
@@ -29,8 +31,14 @@
                     <td><input type="text" name="MaxWeight"/></td>
                 </tr>
                 <tr>
-                    <td>Spawn In Postal Code:</td>
-                    <td><input type="text" name="PostalCode"/></td>
+                    <td>Creat in base:</td>
+                    <td>
+                        <select name="baseId">
+                            @foreach (var baseInfo in Model) {
+                                <option value="@baseInfo.Id">@baseInfo.Name</option>
+                            }
+                        </select>
+                    </td>
                 </tr>
 
             </table>
