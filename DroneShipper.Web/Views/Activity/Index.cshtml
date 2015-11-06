@@ -15,6 +15,7 @@
         }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel-compiled.js"></script>
     <script>
 
         var drones = [@Html.Raw(ViewBag.DroneArray)];
@@ -36,6 +37,15 @@
                     map: map,
                     title: drone.name
                 });
+
+                var mapLabel = new MapLabel({
+                    text: drone.name,
+                    position: new google.maps.LatLng(drone.latitude, drone.longitude),
+                    map: map,
+                    fontSize: 15,
+                    align: 'right'
+                });
+
             }
         }
 
