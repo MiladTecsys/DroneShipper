@@ -1,0 +1,65 @@
+﻿@model List<DroneShipper.BusinessFacade.BaseInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Drone</title>
+</head>
+<body>
+
+    <h1>Add Drone</h1>
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-horizontal">
+
+            <table>
+
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="Name" /></td>
+                </tr>
+                <tr>
+                    <td>MaxWeight:</td>
+                    <td><input type="text" name="MaxWeight"/></td>
+                </tr>
+                <tr>
+                    <td>Creat in base:</td>
+                    <td>
+                        <select name="baseId">
+                            @foreach (var baseInfo in Model) {
+                                <option value="@baseInfo.Id">@baseInfo.Name</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+
+            <br/>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <br /><br />
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</body>
+
+</html>

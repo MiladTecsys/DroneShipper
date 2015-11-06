@@ -19,7 +19,10 @@ namespace DroneShipper.DataAccess
         private const string UPDATE_SHIPMENT = "UpdateShipment";
         private const string INSERT_SHIPMENT = "InsertShipment";
 
+        private readonly AddressDAL _addressDal;
+
         public ShipmentDAL() {
+            _addressDal = new AddressDAL();
         }
 
         public ShipmentInfo GetShipment(int shipmentId) {
@@ -80,13 +83,11 @@ namespace DroneShipper.DataAccess
                 shipment.Weight = (decimal)rdr["Weight"];
             }
 
-            int destinationAddressId = (int)rdr["DestinationAddressId"];
-            shipment.DestinationAddress = new AddressInfo();
-            shipment.DestinationAddress.Id = destinationAddressId;
-
             int sourceAddressId = (int)rdr["SourceAddressId"];
-            shipment.SourceAddress = new AddressInfo();
-            shipment.SourceAddress.Id = sourceAddressId;
+            shipment.SourceAddress = _addressDal.GetAddress(sourceAddressId);
+
+            int destinationAddressId = (int)rdr["DestinationAddressId"];
+            shipment.DestinationAddress = _addressDal.GetAddress(destinationAddressId);
 
             if (rdr["DroneId"] != DBNull.Value) {
                 shipment.DroneId = (int) rdr["DroneId"];

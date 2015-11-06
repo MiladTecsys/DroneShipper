@@ -93,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasesController.cs" />
+    <Compile Include="Controllers\DronesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -106,6 +109,11 @@
     <Content Include="Views\Shipments\Index.cshtml" />
     <Content Include="Views\Shipments\AddShipment.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Drones\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Drones\AddDrone.cshtml" />
+    <Content Include="Views\Bases\Index.cshtml" />
+    <Content Include="Views\Bases\AddBase.cshtml" />
     <Content Include="Views\Activity\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
