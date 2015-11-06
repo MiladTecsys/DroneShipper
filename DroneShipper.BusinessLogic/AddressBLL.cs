@@ -48,7 +48,7 @@ namespace DroneShipper.BusinessLogic {
         }
 
 
-        public static double GetDistanceKm(double fromLat, double fromLong, double toLat, double toLong) {
+        public double GetDistanceKm(double fromLat, double fromLong, double toLat, double toLong) {
             double dLat = ToRad(toLat - fromLat);
             double dLon = ToRad(toLong - fromLong);
 
@@ -62,7 +62,7 @@ namespace DroneShipper.BusinessLogic {
             return distance;
         }
 
-        private static double ToRad(double input) {
+        private double ToRad(double input) {
             return input*(Math.PI/180);
         }
 

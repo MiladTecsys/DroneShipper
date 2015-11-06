@@ -46,7 +46,7 @@ namespace DroneShipper.DataAccess {
                 drone.Name, drone.Status, drone.Longitude, drone.Latitude, drone.MaxWeight);
         }
 
-        public object GetDrones() {
+        public List<DroneInfo> GetDrones() {
             var result = new List<DroneInfo>();
             using (SqlDataReader rdr = SqlHelper.ExecuteReader(_connString, GET_DRONES)) {
                 while (rdr.Read()) {

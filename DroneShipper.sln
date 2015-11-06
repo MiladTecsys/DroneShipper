@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{B9CE3F2B-03F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.Web", "DroneShipper.Web\DroneShipper.Web.csproj", "{6292A48D-2D6A-4BAA-B905-2596E94B8C98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Processor", "Processor", "{8FA31143-FC02-4C6A-B138-C1F3CAC73125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneShipper.Processor.Console", "DroneShipper.Processor.Console\DroneShipper.Processor.Console.csproj", "{D35F9218-664C-4D2D-A254-7F67F24E6AF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,10 @@ Global
 		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6292A48D-2D6A-4BAA-B905-2596E94B8C98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35F9218-664C-4D2D-A254-7F67F24E6AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35F9218-664C-4D2D-A254-7F67F24E6AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35F9218-664C-4D2D-A254-7F67F24E6AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35F9218-664C-4D2D-A254-7F67F24E6AF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC} = {788C76A0-F104-4272-A0FF-DD897694DF82}
 		{8BA6C5A6-A471-4D61-B3E6-6BA8707E2646} = {0A79B8D3-CC9B-488C-9443-9E35AED701B7}
 		{6292A48D-2D6A-4BAA-B905-2596E94B8C98} = {B9CE3F2B-03F0-463F-B5A1-2C9E55121BAF}
+		{D35F9218-664C-4D2D-A254-7F67F24E6AF6} = {8FA31143-FC02-4C6A-B138-C1F3CAC73125}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

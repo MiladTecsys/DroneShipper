@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{D35F9218-664C-4D2D-A254-7F67F24E6AF6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DroneShipper.BusinessLogic</RootNamespace>
-    <AssemblyName>DroneShipper.BusinessLogic</AssemblyName>
+    <RootNamespace>DroneShipper.Processor.Console</RootNamespace>
+    <AssemblyName>DroneShipper.Processor.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,24 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressBLL.cs" />
-    <Compile Include="BaseBLL.cs" />
-    <Compile Include="DroneBLL.cs" />
-    <Compile Include="DroneShipmentActivityLogBLL.cs" />
-    <Compile Include="ILogger.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShipmentBLL.cs" />
-    <Compile Include="ShipmentProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DroneShipper.BusinessFacade\DroneShipper.BusinessFacade.csproj">
-      <Project>{b20b2d2f-ff38-43f5-add2-af7616301465}</Project>
-      <Name>DroneShipper.BusinessFacade</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DroneShipper.DataAccess\DroneShipper.DataAccess.csproj">
-      <Project>{66845037-3b30-4b84-b2df-9094ed647515}</Project>
-      <Name>DroneShipper.DataAccess</Name>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DroneShipper.BusinessLogic\DroneShipper.BusinessLogic.csproj">
+      <Project>{016E3FFB-1C03-45A9-88C2-5D3D5B53FBEC}</Project>
+      <Name>DroneShipper.BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
