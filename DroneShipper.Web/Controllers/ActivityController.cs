@@ -12,25 +12,34 @@ namespace DroneShipper.Web.Controllers
     public class ActivityController : Controller
     {
         private DroneBLL droneBll;
+        private BaseBLL baseBll;
 
         public ActivityController() {
             droneBll = new DroneBLL();
+            baseBll = new BaseBLL();
         }
 
         // GET: Activity
         public ActionResult Index()
         {
+
+            List<string> markers = new List<string>();
+
             List<DroneInfo> drones = droneBll.GetDrones();
 
-            List<string> droneStrings = new List<string>();
 
             foreach (DroneInfo drone in drones) {
-                droneStrings.Add(string.Format("{{ name: '{0}', latitude: {1}, longitude: {2}}}", drone.Name, drone.Latitude, drone.Longitude));
+                markers.Add(string.Format("{{ name: '{0}', latitude: {1}, longitude: {2}, label: '{3}', icon: '{4}'}}", drone.Name, drone.Latitude, drone.Longitude, string.Empty, "content/MapIconPlane.png"));
             }
 
-            ViewBag.DroneArray = string.Join(",", droneStrings.ToArray());
+            var bases = baseBll.GetAll();
+            foreach (var baseInfo in bases)             {
+                markers.Add(string.Format("{{ name: '{0}', latitude: {1}, longitude: {2}, label: '{3}', icon: '{4}'}}", string.Empty, baseInfo.Address.Latitude, baseInfo.Address.Longitude, baseInfo.Name, "content/MapIconHome.png"));
+            }
 
-            return View();
+            var model = string.Join(",", markers.ToArray());
+
+            return View((object)model);
         }
     }
 }

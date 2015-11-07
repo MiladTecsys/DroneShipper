@@ -1,4 +1,6 @@
-﻿@{
+﻿@model System.String
+
+@{
     ViewBag.Title = "Welcome To The Drone Delivery System";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -15,8 +17,8 @@
 <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel-compiled.js"></script>
 
 <script>
-
-    var drones = [@Html.Raw(ViewBag.DroneArray)];
+    debugger;
+    var markers = [@Html.Raw(Model)];
 
     function initialize() {
         var mapCanvas = document.getElementById('map');
@@ -27,18 +29,19 @@
         }
         var map = new google.maps.Map(mapCanvas, mapOptions);
 
-        for (i = 0; i < drones.length; i++) {
-            var drone = drones[i];
+        for (i = 0; i < markers.length; i++) {
+            var marker = markers[i];
 
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(drone.latitude, drone.longitude),
+            new google.maps.Marker({
+                position: new google.maps.LatLng(marker.latitude, marker.longitude),
                 map: map,
-                title: drone.name
+                label: marker.name,
+                icon: marker.icon
             });
 
-            var mapLabel = new MapLabel({
-                text: drone.name,
-                position: new google.maps.LatLng(drone.latitude, drone.longitude),
+            new MapLabel({
+                text: marker.name,
+                position: new google.maps.LatLng(marker.latitude, marker.longitude),
                 map: map,
                 fontSize: 15,
                 align: 'right'
