@@ -24,7 +24,7 @@
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
-                <td>@shipment.Weight</td>
+                <td>@shipment.Weight.ToString("##.##")</td>
             </tr>
         }
     </table>
@@ -47,7 +47,7 @@
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
-                <td>@shipment.Weight</td>
+                <td>@shipment.Weight.ToString("##.##")</td>
                 <td>@shipment.DroneId</td>
             </tr>
         }
@@ -64,13 +64,13 @@
             <th>Destination</th>
             <th>Weight</th>
         </tr>
-        @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.Shipped))
+        @foreach (var shipment in Model.Where(s => s.Status == ShipmentStatus.Shipped).OrderByDescending(s => s.Id))
         {
             <tr style="cursor: pointer;" onclick="location.href = '@(Url.Action("ShipmentLog", "Shipments", new { shipmentId = shipment.Id }))'">
                 <td>@shipment.Id</td>
                 <td>@shipment.SourceAddress.Address1, @shipment.SourceAddress.City, @shipment.SourceAddress.ZipCode</td>
                 <td>@shipment.DestinationAddress.Address1, @shipment.DestinationAddress.City, @shipment.DestinationAddress.ZipCode</td>
-                <td>@shipment.Weight</td>
+                <td>@shipment.Weight.ToString("##.##")</td>
             </tr>
         }
     </table>
